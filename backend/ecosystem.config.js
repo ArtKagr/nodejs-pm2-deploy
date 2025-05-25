@@ -19,8 +19,7 @@ module.exports = {
       repo: REPO,
       path: BACKEND_ENV_PATH,
       'pre-deploy-local': '',
-      'post-deploy': `
-	cd source &&	
+      'post-deploy': `	
         npm install &&
         npm run build &&
         pm2 restart backend
