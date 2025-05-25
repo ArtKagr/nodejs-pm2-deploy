@@ -1,29 +1,23 @@
-require('dotenv').config({ path: '../.env.deploy' });
+const dotenv = require('dotenv');
+dotenv.config({ path: '../.env.deploy' });
+
+const {
+  DEPLOY_USER, 
+  DEPLOY_HOST, 
+  DEPLOY_PATH, 
+  DEPLOY_REF,
+  DEPLOY_REPOSITORY,
+} = process.env;
 
 module.exports = {
-  apps: [
-    {
-      name: 'frontend',
-      script: 'npm',
-      args: 'run start',
-    }
-  ],
   deploy: {
     production: {
-      user: process.env.USER,
-      host: process.env.HOST,
-      ref: 'origin/main',
-      repo: process.env.REPO,
-      path: process.env.FRONTEND_ENV_PATH,
-      'pre-deploy-local': '',
-      'post-deploy': `
-        npm install &&
-        npm run build &&
-        pm2 restart frontend
-      `,
-      env: {
-        NODE_ENV: 'production'
-      }
-    }
-  }
+      user: DEPLOY_USER,
+      host: DEPLOY_HOST,
+      ref: DEPLOY_REF,
+      repo: DEPLOY_REPOSITORY,
+      path: DEPLOY_PATH,
+      'post-deploy': 'cd frontend && pwd && npm ci && npm run build',
+    },
+  },
 };
