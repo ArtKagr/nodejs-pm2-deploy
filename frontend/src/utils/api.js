@@ -139,7 +139,7 @@ class Api {
   }
   }
   // Замените на адрес вашего бэкенда
-  const api = new Api('https://api.diegocrash.students.nomorepartiessbs.ru/signup');
+  const api = new Api('https://api.diegocrash.students.nomorepartiessbs.ru');
   
   export default api;
   
