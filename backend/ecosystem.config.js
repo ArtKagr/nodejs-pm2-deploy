@@ -1,7 +1,7 @@
 require('dotenv').config({ path: '../.env.deploy' });
 
 const {
-  USER, HOST, REPO, BACKEND_ENV_PATH,
+  USER, HOST, REPO, DEPLOY_PATH,
 } = process.env;
 
 module.exports = {
@@ -17,7 +17,7 @@ module.exports = {
       host: HOST,
       ref: 'origin/main',
       repo: REPO,
-      path: BACKEND_ENV_PATH,
+      path: DEPLOY_PATH,
 'pre-deploy': 'echo ">>> PRE DEPLOY"',
 'post-deploy': `
   echo ">>> POST DEPLOY STARTED" &&
