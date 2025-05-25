@@ -18,12 +18,13 @@ module.exports = {
       ref: 'origin/main',
       repo: REPO,
       path: BACKEND_ENV_PATH,
-      'pre-deploy-local': '',
-      'post-deploy': `	
-        npm install &&
-        npm run build &&
-        pm2 restart backend
-      `,
+'pre-deploy': 'echo ">>> PRE DEPLOY"',
+'post-deploy': `
+  echo ">>> POST DEPLOY STARTED" &&
+  npm install &&
+  npm run build &&
+  pm2 restart backend
+`,
       env: {
         NODE_ENV: 'production',
       },
